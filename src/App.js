@@ -1,5 +1,6 @@
 import react, { useState, useEffect } from "react";
 import styled from "styled-components";
+import CheckBox from "./component/CheckBox";
 
 function App() {
   const [checkedList, setCheckedList] = useState([]);
@@ -9,20 +10,18 @@ function App() {
     checkedList.length === 5 ? setIsCheckedAll(true) : setIsCheckedAll(false);
   }, [checkedList.length]);
 
-  const changeHandler = ({ target }) => {
-    checkedList.includes(target.name)
-      ? setCheckedList((prev) => prev.filter((item) => item !== target.name))
-      : setCheckedList((prev) => [...prev, target.name]);
-  };
-
   const changeAllHandler = () => {
     setIsCheckedAll(!isCheckedAll);
-    isCheckedAll === true
+    isCheckedAll
       ? setCheckedList([])
-      : setCheckedList(["checkA", "checkB", "checkC", "checkD", "checkE"]);
+      : setCheckedList([
+          "checkOne",
+          "checkTwo",
+          "checkThree",
+          "checkFour",
+          "checkFive",
+        ]);
   };
-
-  console.log(checkedList, isCheckedAll);
 
   return (
     <Main>
@@ -34,36 +33,21 @@ function App() {
       />
 
       <Content>
-        <CheckBoxA
-          type="checkbox"
-          name="checkA"
-          onChange={changeHandler}
-          checked={checkedList.includes("checkA")}
-        />
-        <CheckBoxB
-          type="checkbox"
-          name="checkB"
-          onChange={changeHandler}
-          checked={checkedList.includes("checkB")}
-        />
-        <CheckBoxC
-          type="checkbox"
-          name="checkC"
-          onChange={changeHandler}
-          checked={checkedList.includes("checkC")}
-        />
-        <CheckBoxD
-          type="checkbox"
-          name="checkD"
-          onChange={changeHandler}
-          checked={checkedList.includes("checkD")}
-        />
-        <CheckBoxE
-          type="checkbox"
-          name="checkE"
-          onChange={changeHandler}
-          checked={checkedList.includes("checkE")}
-        />
+        <CheckBox checkedList={checkedList} setCheckedList={setCheckedList}>
+          checkOne
+        </CheckBox>
+        <CheckBox checkedList={checkedList} setCheckedList={setCheckedList}>
+          checkTwo
+        </CheckBox>
+        <CheckBox checkedList={checkedList} setCheckedList={setCheckedList}>
+          checkThree
+        </CheckBox>
+        <CheckBox checkedList={checkedList} setCheckedList={setCheckedList}>
+          checkFour
+        </CheckBox>
+        <CheckBox checkedList={checkedList} setCheckedList={setCheckedList}>
+          checkFive
+        </CheckBox>
       </Content>
     </Main>
   );
