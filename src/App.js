@@ -1,17 +1,16 @@
-import react, { useState, useEffect } from "react";
+import react, { useState, useMemo } from "react";
 import styled from "styled-components";
 import CheckBox from "./component/CheckBox";
 
 function App() {
   const [checkedList, setCheckedList] = useState([]);
-  const [isCheckedAll, setIsCheckedAll] = useState(false);
 
-  useEffect(() => {
-    checkedList.length === 5 ? setIsCheckedAll(true) : setIsCheckedAll(false);
-  }, [checkedList.length]);
+  const isCheckedAll = useMemo(
+    () => checkedList.length === 5,
+    [checkedList.length]
+  );
 
   const changeAllHandler = () => {
-    setIsCheckedAll(!isCheckedAll);
     isCheckedAll
       ? setCheckedList([])
       : setCheckedList([
@@ -72,9 +71,3 @@ const Content = styled.div`
   height: 100%;
   background-color: antiquewhite;
 `;
-
-const CheckBoxA = styled(CheckBoxAll)``;
-const CheckBoxB = styled(CheckBoxAll)``;
-const CheckBoxC = styled(CheckBoxAll)``;
-const CheckBoxD = styled(CheckBoxAll)``;
-const CheckBoxE = styled(CheckBoxAll)``;
