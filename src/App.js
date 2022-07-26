@@ -1,4 +1,4 @@
-import react, { useState, useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import styled from "styled-components";
 import CheckBox from "./component/CheckBox";
 
